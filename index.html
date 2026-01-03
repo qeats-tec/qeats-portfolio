@@ -61,7 +61,7 @@
     <div class="nav">
       <div class="logo">Qeat</div>
       <div class="lang">
-        <button>English</button>
+        <button id="langBtn">English</button>
         <ul>
           <li data-lang="en">English</li>
           <li data-lang="tr">Türkçe</li>
@@ -145,10 +145,19 @@
   <script>
     const en = document.getElementById('content-en');
     const tr = document.getElementById('content-tr');
+    const btn = document.getElementById('langBtn');
+
     document.querySelectorAll('.lang li').forEach(li=>{
       li.addEventListener('click',()=>{
-        if(li.dataset.lang==='tr'){ en.style.display='none'; tr.style.display='block'; }
-        else{ tr.style.display='none'; en.style.display='block'; }
+        if(li.dataset.lang==='tr'){
+          en.style.display='none';
+          tr.style.display='block';
+          btn.textContent = 'Türkçe';
+        } else {
+          tr.style.display='none';
+          en.style.display='block';
+          btn.textContent = 'English';
+        }
       });
     });
   </script>
