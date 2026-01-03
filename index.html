@@ -1,179 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>QEAT | Evade Skills</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qeat | Evade Pro Player Portfolio</title>
+  <meta name="description" content="Qeat (OnlyQeat) Evade player portfolio. Advanced movement skills: backward hop, inf slide, e-dash, trimming, bouncing." />
+  <meta name="keywords" content="Qeat, Evade, Roblox Evade, Qeat portfolio, Evade movement skills" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
-      color: #ffffff;
-      line-height: 1.6;
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --accent:#6cf2c2;
+      --accent2:#7aa2ff;
+      --text:#e6e9f2;
+      --muted:#9aa3c7;
     }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 10% -10%, #1a245a 0%, transparent 40%),radial-gradient(800px 400px at 90% 10%, #1a5a3a 0%, transparent 40%),var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto}
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;backdrop-filter:blur(8px);background:linear-gradient(180deg,rgba(11,16,32,.85),rgba(11,16,32,.6));border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
+    .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+    .logo{font-weight:800;letter-spacing:.5px}
+    .lang{position:relative}
+    .lang button{background:var(--card);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .lang ul{list-style:none;margin:6px 0 0;padding:6px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:10px;position:absolute;right:0;display:none}
+    .lang:hover ul{display:block}
+    .lang li{padding:6px 10px;cursor:pointer;color:var(--muted)}
+    .lang li:hover{color:var(--text)}
 
-    /* Language selector */
-    .lang-box {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.08);
-      padding: 10px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      user-select: none;
-    }
+    .hero{max-width:1100px;margin:80px auto 40px;padding:0 18px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    h1{font-size:44px;margin:0 0 10px}
+    .tag{display:inline-block;background:rgba(108,242,194,.12);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:10px}
+    p{color:var(--muted);line-height:1.6}
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .chip{border:1px dashed rgba(255,255,255,.18);border-radius:999px;padding:8px 12px}
+    .panel{display:grid;gap:12px}
+    .stat{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
+    .cta{display:flex;gap:10px;margin-top:14px}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0b1020;padding:10px 14px;border-radius:12px;font-weight:600}
+    .btn.alt{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
 
-    .lang-box:hover .lang-options {
-      display: block;
-    }
+    section{max-width:1100px;margin:30px auto;padding:0 18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
-    .lang-options {
-      display: none;
-      margin-top: 10px;
-    }
+    footer{max-width:1100px;margin:40px auto;padding:0 18px 60px;color:var(--muted)}
 
-    .lang-options div {
-      padding: 6px 0;
-      color: #9aa4ff;
-    }
-
-    .lang-options div:hover {
-      color: #ffffff;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 80px 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-    }
-
-    h2 {
-      margin-top: 60px;
-      color: #9aa4ff;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      padding: 30px;
-      margin-top: 30px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
-      backdrop-filter: blur(6px);
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li::before {
-      content: "▶";
-      color: #9aa4ff;
-      margin-right: 10px;
-    }
-
-    footer {
-      margin-top: 100px;
-      text-align: center;
-      opacity: 0.7;
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      h1{font-size:36px}
+      .grid{grid-template-columns:1fr}
     }
   </style>
 </head>
-
 <body>
-
-  <!-- Language Selector -->
-  <div class="lang-box">
-    English
-    <div class="lang-options">
-      <div onclick="setLang('en')">English</div>
-      <div onclick="setLang('tr')">Türkçe</div>
-    </div>
-  </div>
-
-  <div class="container">
-
-    <!-- ENGLISH -->
-    <div id="en">
-      <h1>Hi, I’m QEAT!</h1>
-
-      <div class="card">
-        <p>
-          Hey everyone, I'm QEAT. I'm carrying on the legacy of OnlyGuest.
-          I continue the work of OnlyGuest, who left Roblox Evade last year.
-          I'll be changing my name to <strong>Onlyqeat</strong> soon.
-        </p>
-      </div>
-
-      <h2>Evade Skills</h2>
-      <div class="card">
+  <header>
+    <div class="nav">
+      <div class="logo">Qeat</div>
+      <div class="lang">
+        <button>English</button>
         <ul>
-          <li>Backward hop</li>
-          <li>Inf slide</li>
-          <li>E-dash</li>
-          <li>Trimming / Bouncing</li>
-          <li>etc.</li>
+          <li data-lang="en">English</li>
+          <li data-lang="tr">Türkçe</li>
         </ul>
       </div>
+    </div>
+  </header>
 
+  <main id="content-en">
+    <div class="hero">
+      <div class="card">
+        <span class="tag">Roblox Evade</span>
+        <h1>Hi, I'm Qeat</h1>
+        <p>Continuing the legacy of OnlyGuest in Roblox Evade. Focused on advanced movement mechanics and clean execution.</p>
+        <div class="skills">
+          <div class="chip">Backward Hop</div>
+          <div class="chip">Inf Slide</div>
+          <div class="chip">E‑Dash</div>
+          <div class="chip">Trimming</div>
+          <div class="chip">Bouncing</div>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#showcase">Showcase</a>
+          <a class="btn alt" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="stat"><span>Discord</span><strong>qeats_tec</strong></div>
+        <div class="stat"><span>Roblox</span><strong>QeatsTech</strong></div>
+        <div class="stat"><span>Alt</span><strong>harikauclu_321</strong></div>
+      </div>
+    </div>
+
+    <section id="showcase">
+      <h2>Skills Showcase</h2>
+      <div class="grid">
+        <div class="card"><strong>Backward Hop</strong><p>Momentum control & spacing.</p></div>
+        <div class="card"><strong>Inf Slide</strong><p>Consistent chaining.</p></div>
+        <div class="card"><strong>E‑Dash</strong><p>Timing-based burst.</p></div>
+      </div>
+    </section>
+
+    <section id="contact">
       <h2>Contact</h2>
+      <div class="grid">
+        <div class="card">Discord: qeats_tec</div>
+        <div class="card">GitHub: qeats-tec</div>
+        <div class="card">Status: Non‑toxic</div>
+      </div>
+    </section>
+  </main>
+
+  <main id="content-tr" style="display:none">
+    <div class="hero">
       <div class="card">
-        <p><strong>Discord:</strong> qeats_tec</p>
-        <p><strong>Roblox:</strong> QeatsTech</p>
-        <p><strong>Roblox Real:</strong> harikauclu_321</p>
+        <span class="tag">Roblox Evade</span>
+        <h1>Merhaba, ben Qeat</h1>
+        <p>Roblox Evade’de OnlyGuest mirasını sürdürüyorum. İleri seviye hareket mekanikleri ve temiz oynanış.</p>
+        <div class="skills">
+          <div class="chip">Backward Hop</div>
+          <div class="chip">Inf Slide</div>
+          <div class="chip">E‑Dash</div>
+          <div class="chip">Trimming</div>
+          <div class="chip">Bouncing</div>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#showcase">Gösterim</a>
+          <a class="btn alt" href="#contact">İletişim</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="stat"><span>Discord</span><strong>qeats_tec</strong></div>
+        <div class="stat"><span>Roblox</span><strong>QeatsTech</strong></div>
+        <div class="stat"><span>Alt</span><strong>harikauclu_321</strong></div>
       </div>
     </div>
+  </main>
 
-    <!-- TURKISH -->
-    <div id="tr" style="display:none;">
-      <h1>Merhaba, ben QEAT!</h1>
-
-      <div class="card">
-        <p>
-          Selam, ben QEAT. OnlyGuest’in mirasını devam ettiriyorum.
-          Geçen yıl Roblox Evade’den ayrılan OnlyGuest’in çalışmalarını sürdürüyorum.
-          Yakında adımı <strong>Onlyqeat</strong> olarak değiştireceğim.
-        </p>
-      </div>
-
-      <h2>Evade Yeteneklerim</h2>
-      <div class="card">
-        <ul>
-          <li>Backward hop</li>
-          <li>Inf slide</li>
-          <li>E-Dash</li>
-          <li>Trimming / Bouncing</li>
-        </ul>
-      </div>
-
-      <h2>İletişim</h2>
-      <div class="card">
-        <p><strong>Discord:</strong> qeats_tec</p>
-        <p><strong>Roblox:</strong> QeatsTech</p>
-        <p><strong>Roblox Real:</strong> harikauclu_321</p>
-      </div>
-    </div>
-
-    <footer>
-      <p>I'm not a toxic person.</p>
-      <p>© QEAT</p>
-    </footer>
-
-  </div>
+  <footer>© Qeat — Evade Portfolio</footer>
 
   <script>
-    function setLang(lang) {
-      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
-      document.getElementById('tr').style.display = lang === 'tr' ? 'block' : 'none';
-    }
+    const en = document.getElementById('content-en');
+    const tr = document.getElementById('content-tr');
+    document.querySelectorAll('.lang li').forEach(li=>{
+      li.addEventListener('click',()=>{
+        if(li.dataset.lang==='tr'){ en.style.display='none'; tr.style.display='block'; }
+        else{ tr.style.display='none'; en.style.display='block'; }
+      });
+    });
   </script>
-
 </body>
 </html>
