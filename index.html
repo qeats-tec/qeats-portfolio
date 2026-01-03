@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QEAT | Evade Skills</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* Language selector */
+    .lang-box {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.08);
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lang-box:hover .lang-options {
+      display: block;
+    }
+
+    .lang-options {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .lang-options div {
+      padding: 6px 0;
+      color: #9aa4ff;
+    }
+
+    .lang-options div:hover {
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      margin-top: 60px;
+      color: #9aa4ff;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li::before {
+      content: "▶";
+      color: #9aa4ff;
+      margin-right: 10px;
+    }
+
+    footer {
+      margin-top: 100px;
+      text-align: center;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Language Selector -->
+  <div class="lang-box">
+    English
+    <div class="lang-options">
+      <div onclick="setLang('en')">English</div>
+      <div onclick="setLang('tr')">Türkçe</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ENGLISH -->
+    <div id="en">
+      <h1>Hi, I’m QEAT!</h1>
+
+      <div class="card">
+        <p>
+          Hey everyone, I'm QEAT. I'm carrying on the legacy of OnlyGuest.
+          I continue the work of OnlyGuest, who left Roblox Evade last year.
+          I'll be changing my name to <strong>Onlyqeat</strong> soon.
+        </p>
+      </div>
+
+      <h2>Evade Skills</h2>
+      <div class="card">
+        <ul>
+          <li>Backward hop</li>
+          <li>Inf slide</li>
+          <li>E-dash</li>
+          <li>Trimming / Bouncing</li>
+          <li>etc.</li>
+        </ul>
+      </div>
+
+      <h2>Contact</h2>
+      <div class="card">
+        <p><strong>Discord:</strong> qeats_tec</p>
+        <p><strong>Roblox:</strong> QeatsTech</p>
+        <p><strong>Roblox Real:</strong> harikauclu_321</p>
+      </div>
+    </div>
+
+    <!-- TURKISH -->
+    <div id="tr" style="display:none;">
+      <h1>Merhaba, ben QEAT!</h1>
+
+      <div class="card">
+        <p>
+          Selam, ben QEAT. OnlyGuest’in mirasını devam ettiriyorum.
+          Geçen yıl Roblox Evade’den ayrılan OnlyGuest’in çalışmalarını sürdürüyorum.
+          Yakında adımı <strong>Onlyqeat</strong> olarak değiştireceğim.
+        </p>
+      </div>
+
+      <h2>Evade Yeteneklerim</h2>
+      <div class="card">
+        <ul>
+          <li>Backward hop</li>
+          <li>Inf slide</li>
+          <li>E-Dash</li>
+          <li>Trimming / Bouncing</li>
+        </ul>
+      </div>
+
+      <h2>İletişim</h2>
+      <div class="card">
+        <p><strong>Discord:</strong> qeats_tec</p>
+        <p><strong>Roblox:</strong> QeatsTech</p>
+        <p><strong>Roblox Real:</strong> harikauclu_321</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>I'm not a toxic person.</p>
+      <p>© QEAT</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.getElementById('tr').style.display = lang === 'tr' ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
