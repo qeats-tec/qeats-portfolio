@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qeat | Evade Pro Player Portfolio</title>
-  <meta name="description" content="Qeat (OnlyQeat) Evade player portfolio. Advanced movement skills: backward hop, inf slide, e-dash, trimming, bouncing." />
-  <meta name="keywords" content="Qeat, Evade, Roblox Evade, Qeat portfolio, Evade movement skills" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0b1020;
@@ -19,183 +17,153 @@
       --muted:#9aa3c7;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 10% -10%, #1a245a 0%, transparent 40%),radial-gradient(800px 400px at 90% 10%, #1a5a3a 0%, transparent 40%),var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto}
-    a{color:inherit;text-decoration:none}
-    header{position:sticky;top:0;backdrop-filter:blur(8px);background:linear-gradient(180deg,rgba(11,16,32,.85),rgba(11,16,32,.6));border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
-    .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
-    .logo{font-weight:800;letter-spacing:.5px}
+    body{
+      margin:0;
+      font-family:Inter,system-ui;
+      background:radial-gradient(1200px 600px at 10% -10%, #1a245a 0%, transparent 40%),
+                 radial-gradient(800px 400px at 90% 10%, #1a5a3a 0%, transparent 40%),
+                 var(--bg);
+      color:var(--text);
+    }
+    header{
+      position:sticky;
+      top:0;
+      backdrop-filter:blur(8px);
+      background:rgba(11,16,32,.8);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      max-width:1100px;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      padding:14px 18px;
+    }
     .lang{position:relative}
-    .lang button{background:var(--card);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
-    .lang ul{list-style:none;margin:6px 0 0;padding:6px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:10px;position:absolute;right:0;display:none}
+    .lang button{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.1);
+      color:white;
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    .lang ul{
+      position:absolute;
+      right:0;
+      background:var(--card);
+      list-style:none;
+      padding:6px;
+      border-radius:10px;
+      display:none;
+    }
     .lang:hover ul{display:block}
-    .lang li{padding:6px 10px;cursor:pointer;color:var(--muted)}
-    .lang li:hover{color:var(--text)}
+    .lang li{padding:6px 10px;cursor:pointer}
 
-    .hero{max-width:1100px;margin:80px auto 40px;padding:0 18px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    h1{font-size:44px;margin:0 0 10px}
-    .tag{display:inline-block;background:rgba(108,242,194,.12);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:10px}
-    p{color:var(--muted);line-height:1.6}
-    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .chip{border:1px dashed rgba(255,255,255,.18);border-radius:999px;padding:8px 12px}
-    .panel{display:grid;gap:12px}
-    .stat{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
-    .cta{display:flex;gap:10px;margin-top:14px}
-    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0b1020;padding:10px 14px;border-radius:12px;font-weight:600}
-    .btn.alt{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
-
-    section{max-width:1100px;margin:30px auto;padding:0 18px}
+    section{max-width:1100px;margin:40px auto;padding:0 18px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:18px;
+    }
 
-    footer{max-width:1100px;margin:40px auto;padding:0 18px 60px;color:var(--muted)}
-
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
-      h1{font-size:36px}
+    @media(max-width:900px){
       .grid{grid-template-columns:1fr}
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="nav">
-      <div class="logo">Qeat</div>
-      <div class="lang">
-        <button id="langBtn">English</button>
-        <ul>
-          <li data-lang="en">English</li>
-          <li data-lang="tr">Türkçe</li>
-        </ul>
-      </div>
+
+<header>
+  <div class="nav">
+    <strong>Qeat</strong>
+    <div class="lang">
+      <button id="langBtn">English</button>
+      <ul>
+        <li data-lang="en">English</li>
+        <li data-lang="tr">Türkçe</li>
+      </ul>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main id="content-en">
-    <div class="hero">
-      <div class="card">
-        <span class="tag">Roblox Evade</span>
-        <h1>Hi, I'm Qeat</h1>
-        <p>Continuing the legacy of OnlyGuest in Roblox Evade.  I've skills...</p>
-        <div class="skills">
-          <div class="chip">Backward Hop</div>
-          <div class="chip">Inf Slide</div>
-          <div class="chip">E‑Dash</div>
-          <div class="chip">Trimming</div>
-          <div class="chip">Bouncing</div>
-        </div>
-        <div class="cta">
-          <a class="btn" href="#showcase">Showcase</a>
-          <a class="btn alt" href="#contact">Contact</a>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="stat"><span>Discord</span><strong>qeats_tec</strong></div>
-        <div class="stat"><span>Roblox</span><strong>QeatsTech</strong></div>
-        <div class="stat"><span>Alt</span><strong>harikauclu_321</strong></div>
-      </div>
+<!-- ENGLISH -->
+<main id="content-en">
+  <section>
+    <h1>Hi, I'm Qeat</h1>
+    <p>Advanced Roblox Evade player focused on movement mechanics.</p>
+  </section>
+
+  <section>
+    <h2>Skills Showcase</h2>
+    <div class="grid">
+      <div class="card"><b>Backward Hop</b><p>Perfect timing.</p></div>
+      <div class="card"><b>Inf Slide</b><p>Momentum control.</p></div>
+      <div class="card"><b>E-Dash</b><p>All techniques combined.</p></div>
     </div>
+  </section>
 
-    <section id="about">
-      <h2>Who is Qeat?</h2>
-      <div class="grid">
-        <div class="card">
-          <strong>🎙️ Amateur Voice Acting</strong>
-          <p>I have worked as an amateur voice actor in <b>Aria Record</b>, gaining experience with character tones and emotion delivery.</p>
-        </div>
-        <div class="card">
-          <strong>🎮 Evade Experience</strong>
-          <p>Level <b>120+</b> in Roblox Evade, focused on advanced movement mechanics and survival consistency.</p>
-        </div>
-        <div class="card">
-          <strong>🧠Java Scripting</strong>
-          <p>I'm learning JavaScript these days. That's why I designed this website this way..</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="showcase">
-      <h2>Skills Showcase</h2>
-      <div class="grid">
-        <div class="card"><strong>Backward Hop</strong><p>Timing 🗿.</p></div>
-        <div class="card"><strong>Inf Slide</strong><p>Momentum Control & Strafe.</p></div>
-        <div class="card"><strong>E‑Dash</strong><p>The combination of all techniques.</p></div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="grid">
-        <div class="card">Discord: qeats_tec</div>
-        <div class="card">GitHub: qeats-tec</div>
-        <div class="card">Status: Non‑toxic</div>
-      </div>
-    </section>
-  </main>
-
-  <main id="content-tr" style="display:none">
-    <div class="hero">
-      <div class="card">
-        <span class="tag">Roblox Evade</span>
-        <h1>Merhaba, ben Qeat</h1>
-        <p>Roblox Evade’de OnlyGuest mirasını sürdürüyorum. İleri seviye hareket mekanikleri ve temiz oynanış.</p>
-        <div class="skills">
-          <div class="chip">Backward Hop</div>
-          <div class="chip">Inf Slide</div>
-          <div class="chip">E‑Dash</div>
-          <div class="chip">Trimming</div>
-          <div class="chip">Bouncing</div>
-        </div>
-        <div class="cta">
-          <a class="btn" href="#about-tr">Hakkımda</a>
-          <a class="btn alt" href="#contact">İletişim</a>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="stat"><span>Discord</span><strong>qeats_tec</strong></div>
-        <div class="stat"><span>Roblox</span><strong>QeatsTech</strong></div>
-        <div class="stat"><span>Alt</span><strong>harikauclu_321</strong></div>
-      </div>
+  <section>
+    <h2>Contact</h2>
+    <div class="grid">
+      <div class="card">Discord: qeats_tec</div>
+      <div class="card">GitHub: qeats-tec</div>
+      <div class="card">Status: Online🟢</div>
+      <div class="card">I'm not toxic!!!</div>
     </div>
+  </section>
+</main>
 
-    <section id="about-tr">
-      <h2>Qeat kimdir?</h2>
-      <div class="grid">
-        <div class="card">
-          <strong>🎙️ Amatör Dublaj</strong>
-          <p><b>Aria Record</b> projesinde amatör dublörlük yaptım. Karakter sesi ve duygu aktarımı üzerine deneyim kazandım.</p>
-        </div>
-        <div class="card">
-          <strong>🎮 Evade Deneyimi</strong>
-          <p>Roblox Evade’de <b>120+ seviye</b>. İleri seviye hareket mekanikleri ve istikrarlı hayatta kalma.</p>
-        </div>
-        <div class="card">
-          <strong>🧠Java Scripting</strong>
-          <p>Bu aralar JavaScript öğreniyorum. Bunun sayesinde bu web sitesini tasarladım..</p>
-        </div>
-      </div>
-    </section>
-  </main>
+<!-- TURKISH -->
+<main id="content-tr" style="display:none">
+  <section>
+    <h1>Merhaba, ben Qeat</h1>
+    <p>İleri seviye Roblox Evade oyuncusuyum. Hareket mekaniklerine odaklanırım.</p>
+  </section>
 
-  <footer>© Qeat — Evade Portfolio</footer>
+  <section>
+    <h2>Yetenekler</h2>
+    <div class="grid">
+      <div class="card"><b>Backward Hop</b><p>Zamanlama ustalığı.</p></div>
+      <div class="card"><b>Inf Slide</b><p>Momentum kontrolü.</p></div>
+      <div class="card"><b>E-Dash</b><p>Tüm tekniklerin birleşimi.</p></div>
+    </div>
+  </section>
 
-  <script>
-    const en = document.getElementById('content-en');
-    const tr = document.getElementById('content-tr');
-    const btn = document.getElementById('langBtn');
+  <section>
+    <h2>İletişim</h2>
+    <div class="grid">
+      <div class="card">Discord: qeats_tec</div>
+      <div class="card">GitHub: qeats-tec</div>
+      <div class="card">Ben Toxic biri değilim!!!</div>
+      <div class="card">Durum = Aktif🟢</div>
+    </div>
+  </section>
+</main>
 
-    document.querySelectorAll('.lang li').forEach(li=>{
-      li.addEventListener('click',()=>{
-        if(li.dataset.lang==='tr'){
-          en.style.display='none';
-          tr.style.display='block';
-          btn.textContent = 'Türkçe';
-        } else {
-          tr.style.display='none';
-          en.style.display='block';
-          btn.textContent = 'English';
-        }
-      });
-    });
-  </script>
+<script>
+  const en = document.getElementById("content-en");
+  const tr = document.getElementById("content-tr");
+  const btn = document.getElementById("langBtn");
+
+  document.querySelectorAll(".lang li").forEach(li=>{
+    li.onclick = ()=>{
+      if(li.dataset.lang === "tr"){
+        en.style.display="none";
+        tr.style.display="block";
+        btn.textContent="Türkçe";
+      }else{
+        tr.style.display="none";
+        en.style.display="block";
+        btn.textContent="English";
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
+
