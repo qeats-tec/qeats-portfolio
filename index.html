@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qeat | Evade Pro Player Portfolio</title>
+  <title>Qeat | Evade Portfolio</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -20,9 +20,10 @@
     body{
       margin:0;
       font-family:Inter,system-ui;
-      background:radial-gradient(1200px 600px at 10% -10%, #1a245a 0%, transparent 40%),
-                 radial-gradient(800px 400px at 90% 10%, #1a5a3a 0%, transparent 40%),
-                 var(--bg);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1a245a 0%, transparent 40%),
+        radial-gradient(800px 400px at 90% 10%, #1a5a3a 0%, transparent 40%),
+        var(--bg);
       color:var(--text);
     }
     header{
@@ -61,16 +62,12 @@
     .lang li{padding:6px 10px;cursor:pointer}
 
     section{max-width:1100px;margin:40px auto;padding:0 18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
     .card{
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
       border-radius:18px;
       padding:18px;
-    }
-
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -98,6 +95,24 @@
   </section>
 
   <section>
+    <h2>Who is Qeat?</h2>
+    <div class="grid">
+      <div class="card">
+        <b>🎙️ Amateur Voice Acting</b>
+        <p>I worked as an amateur voice actor in <b>Aria Record</b>.</p>
+      </div>
+      <div class="card">
+        <b>🎮 Evade Experience</b>
+        <p>Level <b>120+</b> in Roblox Evade with advanced movement skills.</p>
+      </div>
+      <div class="card">
+        <b>🧠 Learning JavaScript</b>
+        <p>This website is one of my first real JavaScript projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Skills Showcase</h2>
     <div class="grid">
       <div class="card"><b>Backward Hop</b><p>Perfect timing.</p></div>
@@ -111,8 +126,8 @@
     <div class="grid">
       <div class="card">Discord: qeats_tec</div>
       <div class="card">GitHub: qeats-tec</div>
-      <div class="card">Status: Online🟢</div>
-      <div class="card">I'm not toxic!!!</div>
+      <div class="card">Status: Online 🟢</div>
+      <div class="card">I'm not toxic 😄</div>
     </div>
   </section>
 </main>
@@ -121,7 +136,25 @@
 <main id="content-tr" style="display:none">
   <section>
     <h1>Merhaba, ben Qeat</h1>
-    <p>İleri seviye Roblox Evade oyuncusuyum. Hareket mekaniklerine odaklanırım.</p>
+    <p>İleri seviye Roblox Evade oyuncusuyum.</p>
+  </section>
+
+  <section>
+    <h2>Qeat kimdir?</h2>
+    <div class="grid">
+      <div class="card">
+        <b>🎙️ Amatör Dublaj</b>
+        <p><b>Aria Record</b> projesinde amatör dublörlük yaptım.</p>
+      </div>
+      <div class="card">
+        <b>🎮 Evade Deneyimi</b>
+        <p>Roblox Evade’de <b>120+ seviye</b>.</p>
+      </div>
+      <div class="card">
+        <b>🧠 JavaScript Öğreniyorum</b>
+        <p>Bu site öğrendiklerimi uygulamak için yaptığım bir projedir.</p>
+      </div>
+    </div>
   </section>
 
   <section>
@@ -138,8 +171,8 @@
     <div class="grid">
       <div class="card">Discord: qeats_tec</div>
       <div class="card">GitHub: qeats-tec</div>
-      <div class="card">Ben Toxic biri değilim!!!</div>
-      <div class="card">Durum = Aktif🟢</div>
+      <div class="card">Durum: Aktif 🟢</div>
+      <div class="card">Toxic değilim 😄</div>
     </div>
   </section>
 </main>
@@ -155,10 +188,12 @@
         en.style.display="none";
         tr.style.display="block";
         btn.textContent="Türkçe";
+        document.documentElement.lang="tr";
       }else{
         tr.style.display="none";
         en.style.display="block";
         btn.textContent="English";
+        document.documentElement.lang="en";
       }
     }
   });
@@ -166,4 +201,3 @@
 
 </body>
 </html>
-
