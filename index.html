@@ -3,96 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qeat's Portfolio</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+  <title>Qeat | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b1020;
-      --card:#121a33;
-      --accent:#6cf2c2;
-      --accent2:#7aa2ff;
-      --text:#e6e9f2;
-      --muted:#9aa3c7;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui;
-      background:radial-gradient(1200px 600px at 10% -10%, #1a245a 0%, transparent 40%),
-                 radial-gradient(800px 400px at 90% 10%, #1a5a3a 0%, transparent 40%),
-                 var(--bg);
-      color:var(--text);
-    }
-    header{
-      position:sticky;
-      top:0;
-      backdrop-filter:blur(8px);
-      background:rgba(11,16,32,.85);
-      border-bottom:1px solid rgba(255,255,255,.08);
-      z-index:10;
-    }
-    .nav{
-      max-width:1100px;
-      margin:auto;
-      display:flex;
-      justify-content:space-between;
-      padding:14px 18px;
+    :root {
+      --bg: #060913;
+      --card-bg: rgba(18, 26, 51, 0.6);
+      --accent: #00ffaa;
+      --accent-glow: rgba(0, 255, 170, 0.3);
+      --secondary: #7aa2ff;
+      --text: #f0f2f8;
+      --muted: #8a95b3;
+      --border: rgba(255, 255, 255, 0.1);
     }
 
-    .lang{position:relative}
-    .lang button{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.1);
-      color:white;
-      padding:8px 12px;
-      border-radius:10px;
-      cursor:pointer;
-    }
-    .lang ul{
-      position:absolute;
-      right:0;
-      top:45px;
-      background:var(--card);
-      list-style:none;
-      padding:6px;
-      border-radius:10px;
-      display:none;
-      border:1px solid rgba(255,255,255,.1);
-    }
-    .lang ul.show{display:block}
-    .lang li{
-      padding:8px 12px;
-      cursor:pointer;
-      border-radius:8px;
-    }
-    .lang li:hover{
-      background:rgba(255,255,255,.08);
+    /* --- ÖZEL İMLEÇ AYARLARI --- */
+    * { 
+      box-sizing: border-box; 
+      transition: all 0.3s ease; 
+      cursor: none !important; /* Standart mouse'u gizle */
     }
 
-    section{max-width:1100px;margin:40px auto;padding:0 18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:18px;
+    #custom-cursor {
+      position: fixed;
+      width: 48px; 
+      height: 48px;
+      /* SENİN ATTIĞIN İMLEÇ FOTOSUNUN DOSYA ADINI BURAYA YAZ (Örn: imlec.png) */
+      background-image: url('pixilart-drawing (21).png'); 
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-10%, -10%); 
+      transition: transform 0.05s linear;
     }
 
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
+    .cursor-click {
+      transform: scale(0.8) rotate(-10deg) !important;
+    }
+
+    /* --- MÜZİK ÇALAR STİLİ --- */
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 10px 15px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    #musicBtn {
+      background: var(--accent);
+      border: none;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 0% 0%, #162044 0%, transparent 35%),
+        radial-gradient(circle at 100% 100%, #0d2e24 0%, transparent 35%);
+      background-attachment: fixed;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 9, 19, 0.7);
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .lang-wrapper { position: relative; }
+    #langBtn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    #langBtn:hover { background: var(--accent); color: var(--bg); }
+
+    #langMenu {
+      position: absolute;
+      right: 0; top: 50px;
+      background: #121a33;
+      border: 1px solid var(--border);
+      list-style: none;
+      padding: 5px;
+      border-radius: 12px;
+      display: none;
+      min-width: 120px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    #langMenu.show { display: block; animation: slideUp 0.2s ease; }
+    #langMenu li { padding: 10px; border-radius: 8px; }
+    #langMenu li:hover { background: rgba(255,255,255,0.1); color: var(--accent); }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin: 0;
+      background: linear-gradient(to right, #fff, var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 1.1rem; margin-top: 20px; }
+
+    section { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2::after { content: ""; height: 1px; flex: 1; background: var(--border); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow);
+    }
+    .card b { color: var(--accent); display: block; margin-bottom: 10px; font-size: 1.2rem; }
+    .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+    .btn-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: rgba(122, 162, 255, 0.1);
+      color: var(--secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .btn-link:hover { background: var(--secondary); color: white; }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px; }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
 
+<div id="custom-cursor"></div>
+
+<div class="music-player">
+  <span style="font-size: 11px; font-weight: bold;">QEAT RADIO</span>
+  <button id="musicBtn">PLAY</button>
+  <audio id="bgAudio" loop>
+    <source src="sarki.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
 <header>
   <div class="nav">
-    <strong>Qeat</strong>
-    <div class="lang">
-      <button id="langBtn">English</button>
+    <div class="logo">QEAT</div>
+    <div class="lang-wrapper">
+      <button id="langBtn">Language: EN</button>
       <ul id="langMenu">
         <li data-lang="en">English</li>
         <li data-lang="tr">Türkçe</li>
@@ -101,81 +228,108 @@
   </div>
 </header>
 
-<!-- ENGLISH -->
 <main id="content-en">
-
-  <section>
+  <div class="hero">
     <h1>Hi, I'm Qeat</h1>
-    <p>Hey Guys, I'm qeat. I'm someone who enjoys playing Evade and is interested in weird hobbies. First of all, this website is in beta version.</p>
-  </section>
+    <p>Evade player, weird hobby enthusiast, and 2D web developer. Welcome to my digital space.</p>
+  </div>
 
   <section>
-    <h2>Who is Qeat / me?</h2>
+    <h2>Core Stats</h2>
     <div class="grid">
-      <div class="card">🎮 +120 Level in Evade (Itz good thing) (cuz im evader)</div>
-      <div class="card">🎙️ Amateur voice acting in Aria Record (Assistant dev)</div>
-      <div class="card">🧠 Java Scriping for this web site.(My first achievement)</div>
+      <div class="card"><b>🎮 Evader</b><p>Level +120 in Evade. Itz Good Thing...</p></div>
+      <div class="card"><b>🎙️ Voice Actor</b><p>Assistant Dev and Amateur voice talent at Aria Record.</p></div>
+      <div class="card"><b>🧠 Scripting</b><p>Learning JavaScript to build interactive web experiences like this one.</p></div>
     </div>
   </section>
 
   <section>
-    <h2>Details←</h2>
+    <h2>Projects & Teams</h2>
     <div class="grid">
-      <div class="card"><b>Aria Records</b> <p> We've only just started and we don't have any major projects yet. If you'd like to join, my Discord username is below.</p></div>
-      <div class="card"><b>Amateur Artist</b><p>I'm an <strong>Amateur</strong> artist (I don't have a team😭). Please, include me in a team!!!!</p></div>
-      <div class="card"><b>My Scripting Career</b><p>Some cool things= https://qeats-tec.github.io/QeatsTR-SansF/ , https://qeats-tec.github.io/LastBreath/ (They r not mine, i cloned them)</p></div>
+      <div class="card">
+        <b>Aria Records</b>
+        <p>A fresh start for creative projects. We are looking for talented body to join us.</p>
+        <span style="color:var(--accent)">Discord: qeat.dev</span>
+      </div>
+      <div class="card">
+        <b>Scripting Career</b>
+        <p>Check out some of the cool projects I've been working on and cloning.</p>
+        <a href="https://qeats-tec.github.io/Qsu/" class="btn-link">Qsu!</a>
+        <a href="https://qeats-tec.github.io/LastBreath/" class="btn-link">UT Last Breath</a>
+      </div>
+      <div class="card">
+        <b>Games</b>
+        <p>Experience the games I've finished or developed.</p>
+        <a href="https://qeats-tec.github.io/qeatsFNF/" class="btn-link">Basic FNF</a>
+        <a href="https://qeats-tec.github.io/Undertale/" class="btn-link">Basic Undertale</a>
+      </div>
     </div>
   </section>
-
-  <section>
-    <h2>Contact</h2>
-    <div class="grid">
-      <div class="card">Discord: qeat.dev)</div>
-      <div class="card">FNF = https://qeats-tec.github.io/qeatsFNF/</div>
-      <div class="card">I finished undertale game -> Undertale = https://qeats-tec.github.io/Undertale/</div>
-    </div>
-  </section>
-
 </main>
 
-<!-- TURKISH -->
 <main id="content-tr" style="display:none">
+  <div class="hero">
+    <h1>Selam, Ben Qeat</h1>
+    <p>Evade oyuncusu, farklı hobilere meraklı ve 2D web geliştirici. Dijital dünyama hoş geldin.</p>
+  </div>
 
   <section>
-    <h1>Merhaba, ben Qeat</h1>
-    <p>Selam bunu Gören Kişi, Ben Qeat. Evade oynamaktan hoşlanan ve 2D web oyun geliştiren Biriyim. Artık bu site beta Değil</p>
-  </section>
-
-  <section>
-    <h2>Qeat kimdir/kimimdir?</h2>
+    <h2>Ana İstatistikler</h2>
     <div class="grid">
-      <div class="card">🎮 Evade'de +120 seviye (bu iyi bi' şey) (Çünkü ben Evader'ım)</div>
-      <div class="card">🎙️ Aria Record’da amatör dublörlük (yardımcı dev.)</div>
-      <div class="card">🧠Bu siteyi oluşturmak için Java Script öğreniyorum.(Ve Hala Beta sürümünde) </div>
+      <div class="card"><b>🎮 Evade Ustası</b><p>Evade'de +120 seviyeyim. Bu iyi bir şey ama sıkıldım...</p></div>
+      <div class="card"><b>🎙️ Dublör?!</b><p>Aria Record'sa amatör dublörlük ve yardımcı geliştiriciyim.</p></div>
+      <div class="card"><b>🧠 Scripting</b><p>Bu siteyi ve daha fazlasını oluşturmak için JavaScript öğreniyorum.</p></div>
     </div>
   </section>
 
   <section>
-    <h2>Yetenekler</h2>
+    <h2>Projeler & Ekipler</h2>
     <div class="grid">
-      <div class="card"><b>Aria Records</b><p>Daha yeni başladık ve henüz büyük projelerimiz yok. Eğer katılmak istiyorsanız Discord Adım aşağıda! </p></div>
-      <div class="card"><b>Amatör Çizer</b><p>Çizerlikle (<strong>Amatör</strong>) uğraşıyorum. Hâlâ Bi' ekibim yok😭. Lütfen bir ekibe beni alın!!!!</p></div>
-      <div class="card"><b>Scripting Kariyerim</b><p>Bir-İki havalı Şey= https://qeats-tec.github.io/QeatsTR-SansF/ , https://qeats-tec.github.io/LastBreath/ (Kodların Tamamı bana ait değildir, Dublajlayacağım)</p></div>
+      <div class="card">
+        <b>Aria Records</b>
+        <p>Yeni başladık, büyük hayallerimiz var. Katılmak istersen Discord'dan ulaş!</p>
+        <span style="color:var(--accent)">Discord: qeat.dev</span>
+      </div>
+      <div class="card">
+        <b>Scripting Kariyerim</b>
+        <p>Üzerinde çalıştığım veya geliştirdiğim üst düzey havalı kodlar.</p>
+        <a href="https://qeats-tec.github.io/Qsu/" class="btn-link">Qsu!</a>
+        <a href="https://qeats-tec.github.io/LastBreath/" class="btn-link">UT Last Breath</a>
+      </div>
+      <div class="card">
+        <b>Oyunlar</b>
+        <p>Bitirdiğim veya web'e uyarladığım BASIC oyun deneyimleri.</p>
+        <a href="https://qeats-tec.github.io/qeatsFNF/" class="btn-link">FNF Basit Düzey</a>
+        <a href="https://qeats-tec.github.io/Undertale/" class="btn-link">Undertale Basit Düzey</a>
+      </div>
     </div>
   </section>
-
-  <section>
-    <h2>İletişim</h2>
-    <div class="grid">
-      <div class="card">Discord: qeat.dev</div>
-      <div class="card">FNF = https://qeats-tec.github.io/qeatsFNF/</div>
-      <div class="card">Kendi basic Undertale oyunum bitti -> Undertale = https://qeats-tec.github.io/Undertale/ </div>
-    </div>
-  </section>
-
 </main>
 
 <script>
+  // İMLEÇ SCRIPTI
+  const cursor = document.getElementById('custom-cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mousedown', () => cursor.classList.add('cursor-click'));
+  document.addEventListener('mouseup', () => cursor.classList.remove('cursor-click'));
+
+  // MÜZİK SCRIPTI
+  const audio = document.getElementById('bgAudio');
+  const mBtn = document.getElementById('musicBtn');
+  mBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      mBtn.textContent = "PAUSE";
+    } else {
+      audio.pause();
+      mBtn.textContent = "PLAY";
+    }
+  });
+
+  // DİL VE MENÜ SCRIPTI
   const en = document.getElementById("content-en");
   const tr = document.getElementById("content-tr");
   const btn = document.getElementById("langBtn");
@@ -188,24 +342,16 @@
 
   document.querySelectorAll("#langMenu li").forEach(li=>{
     li.addEventListener("click", ()=>{
-      if(li.dataset.lang === "tr"){
-        en.style.display="none";
-        tr.style.display="block";
-        btn.textContent="Türkçe";
-        document.documentElement.lang="tr";
-      }else{
-        tr.style.display="none";
-        en.style.display="block";
-        btn.textContent="English";
-        document.documentElement.lang="en";
-      }
+      const isTr = li.dataset.lang === "tr";
+      en.style.display = isTr ? "none" : "block";
+      tr.style.display = isTr ? "block" : "none";
+      btn.textContent = isTr ? "Dil: TR" : "Language: EN";
+      document.documentElement.lang = isTr ? "tr" : "en";
       menu.classList.remove("show");
     });
   });
 
-  document.addEventListener("click", ()=>{
-    menu.classList.remove("show");
-  });
+  document.addEventListener("click", () => menu.classList.remove("show"));
 </script>
 
 </body>
