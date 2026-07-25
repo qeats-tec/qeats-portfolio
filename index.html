@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qeat | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;800&display=swap" rel="stylesheet">
+  <!-- Orbitron Fontu Eklendi (Köşeli, Yüksek Teknoloji Stili) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght=300;400;600;800&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --bg: #0a0c10;              
       --card-bg: rgba(10, 12, 16, 0.6); 
       --accent: #ffcc00;        
-      --accent-glow: rgba(255, 204, 0, 0.15);
+      --accent-glow: rgba(255, 204, 0, 0.25);
       --secondary: #e4e4e7;     
       --text: #ffffff;          
       --muted: #a1a1aa;         
@@ -60,14 +62,16 @@
       line-height: 1.5;
     }
 
-    /* --- TROLL INTRO SCREEN --- */
+    /* --- YENİ LIQUID LOADING INTRO --- */
     #troll-enter-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      background-color: #050608;
+      background: rgba(5, 6, 8, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -75,34 +79,60 @@
       z-index: 9998;
     }
 
-    #click-prompt {
-      color: #ffffff;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.4rem;
-      letter-spacing: 5px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      animation: blinkText 1.5s infinite;
-    }
-
-    @keyframes blinkText {
-      50% { opacity: 0; }
-    }
-
-    #troll-text-container {
+    .liquid-loader-wrapper {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
-      font-family: 'Courier New', Courier, monospace;
+      animation: floatShake 3s ease-in-out infinite;
     }
 
-    .troll-line {
-      color: #ff3838; 
-      font-size: 1.3rem;
+    /* Hafif Sallanma / Süzülme Efekti */
+    @keyframes floatShake {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(-1deg); }
+      75% { transform: translateY(6px) rotate(1deg); }
+    }
+
+    /* SVG Maske ve Sıvı Katmanları */
+    .qh-svg-container {
+      width: 260px;
+      height: 180px;
+      position: relative;
+      filter: drop-shadow(0 0 25px var(--accent-glow));
+    }
+
+    /* Sıvı Yükselme Animasyonu */
+    .liquid-wave {
+      animation: waveMove 2s linear infinite;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-160px); }
+    }
+
+    #click-prompt {
+      margin-top: 35px;
+      color: var(--accent);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 4px;
       font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    #click-prompt.ready {
+      opacity: 1;
+      pointer-events: auto;
+      animation: blinkText 1.2s infinite;
+    }
+
+    @keyframes blinkText {
+      50% { opacity: 0.3; }
     }
 
     .screen-flash-bang {
@@ -110,7 +140,7 @@
     }
 
     @keyframes flashEffect {
-      0% { background-color: #050608; }
+      0% { background-color: rgba(5, 6, 8, 0.85); }
       40% { background-color: #ffffff; } 
       100% { background-color: #0a0c10; opacity: 0; visibility: hidden; }
     }
@@ -176,9 +206,9 @@
     }
 
     .logo {
-      font-weight: 800;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
       font-size: 1.6rem;
-      text-transform: uppercase;
       letter-spacing: 3px;
       color: var(--text);
     }
@@ -400,6 +430,7 @@
       .hero { padding: 80px 20px 40px; }
       .grid { grid-template-columns: 1fr; }
       .nav { padding: 1rem; }
+      .qh-svg-container { width: 200px; height: 140px; }
     }
   </style>
 </head>
@@ -408,9 +439,42 @@
 
 <div id="custom-cursor"></div>
 
+<!-- YENİ LIQUID / SIVI SALLANMA YÜKLEME EKRANI -->
 <div id="troll-enter-screen">
-  <div id="click-prompt" onclick="runTrollScript()">[ CLICK TO ENTER ]</div>
-  <div id="troll-text-container"></div>
+  <div class="liquid-loader-wrapper">
+    
+    <div class="qh-svg-container">
+      <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- QH Köşeli Metin Maskesi -->
+          <mask id="qh-text-mask">
+            <rect width="100%" height="100%" fill="black" />
+            <text x="50%" y="75%" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="82" font-weight="900" fill="white" letter-spacing="4">QH</text>
+          </mask>
+
+          <!-- Sıvı Rengi (Sarı Gradient) -->
+          <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffe600" />
+            <stop offset="100%" stop-color="#ff9900" />
+          </linearGradient>
+        </defs>
+
+        <!-- Dış Çerçeve (Boş QH) -->
+        <text x="50%" y="75%" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="82" font-weight="900" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" letter-spacing="4">QH</text>
+
+        <!-- Sıvı Katmanı (Maskelenmiş) -->
+        <g mask="url(#qh-text-mask)">
+          <!-- Yükselen Sıvı Grubu -->
+          <g id="liquid-level" transform="translate(0, 110)">
+            <!-- Sıvı Dalga Yüzeyi -->
+            <path class="liquid-wave" fill="url(#liquidGrad)" d="M 0,0 C 40,-8 80,8 120,0 C 160,-8 200,8 240,0 C 280,-8 320,8 360,0 V 150 H 0 Z" />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div id="click-prompt" onclick="enterPortfolio()">[ CLICK TO ENTER ]</div>
+  </div>
 </div>
 
 <div id="app-wrapper">
@@ -613,46 +677,37 @@
   document.addEventListener('mousedown', () => cursor.classList.add('cursor-click'));
   document.addEventListener('mouseup', () => cursor.classList.remove('cursor-click'));
 
-  // --- TROLL SCRIPT MECHANISM ---
-  const trollTexts = [
-    "Burayı guns.lol zannettin değil mi...",
-    "Yanıldın.",
-    "Burası QeatHUB!"
-  ];
+  // --- SIVI DOLMA ANIMASYON KONTROLU ---
+  window.addEventListener('DOMContentLoaded', () => {
+    const liquidLevel = document.getElementById('liquid-level');
+    const prompt = document.getElementById('click-prompt');
+    let startY = 110; 
+    let targetY = 10; 
+    let startTime = null;
+    const duration = 2200; // Dolma süresi (2.2 saniye)
 
-  function runTrollScript() {
-    document.getElementById('click-prompt').style.display = 'none';
-    const container = document.getElementById('troll-text-container');
-    let currentLine = 0;
+    function fillLiquid(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      // Easing (yavaşlayarak dolma)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentY = startY - ((startY - targetY) * easeProgress);
+      
+      liquidLevel.setAttribute('transform', `translate(0, ${currentY})`);
 
-    function typeWriterEffect() {
-      if (currentLine < trollTexts.length) {
-        const lineDiv = document.createElement('div');
-        lineDiv.className = 'troll-line';
-        container.appendChild(lineDiv);
-
-        let charIndex = 0;
-        const fullText = trollTexts[currentLine];
-
-        function writeChar() {
-          if (charIndex < fullText.length) {
-            lineDiv.innerHTML += fullText.charAt(charIndex);
-            charIndex++;
-            setTimeout(writeChar, 45);
-          } else {
-            currentLine++;
-            setTimeout(typeWriterEffect, 700);
-          }
-        }
-        writeChar();
+      if (progress < 1) {
+        requestAnimationFrame(fillLiquid);
       } else {
-        setTimeout(triggerExplosion, 400);
+        // Dolma bitince yazı gözüksün
+        prompt.classList.add('ready');
       }
     }
-    typeWriterEffect();
-  }
 
-  function triggerExplosion() {
+    requestAnimationFrame(fillLiquid);
+  });
+
+  function enterPortfolio() {
     const screen = document.getElementById('troll-enter-screen');
     const wrapper = document.getElementById('app-wrapper');
     const audio = document.getElementById('bgAudio');
