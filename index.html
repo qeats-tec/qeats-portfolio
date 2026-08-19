@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qeat | Portfolio</title>
-  <!-- Orbitron Fontu Eklendi (Köşeli, Yüksek Teknoloji Stili) -->
+  <!-- Orbitron Fontu Eklendi (KÃ¶Åeli, YÃ¼ksek Teknoloji Stili) -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght=300;400;600;800&display=swap" rel="stylesheet">
   
   <style>
@@ -62,7 +62,7 @@
       line-height: 1.5;
     }
 
-    /* --- YENİ LIQUID LOADING INTRO --- */
+    /* --- YENÄ° LIQUID LOADING INTRO --- */
     #troll-enter-screen {
       position: fixed;
       top: 0;
@@ -87,14 +87,14 @@
       animation: floatShake 3s ease-in-out infinite;
     }
 
-    /* Hafif Sallanma / Süzülme Efekti */
+    /* Hafif Sallanma / SÃ¼zÃ¼lme Efekti */
     @keyframes floatShake {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       25% { transform: translateY(-8px) rotate(-1deg); }
       75% { transform: translateY(6px) rotate(1deg); }
     }
 
-    /* SVG Maske ve Sıvı Katmanları */
+    /* SVG Maske ve SÄ±vÄ± KatmanlarÄ± */
     .qh-svg-container {
       width: 260px;
       height: 180px;
@@ -102,7 +102,7 @@
       filter: drop-shadow(0 0 25px var(--accent-glow));
     }
 
-    /* Sıvı Yükselme Animasyonu */
+    /* SÄ±vÄ± YÃ¼kselme Animasyonu */
     .liquid-wave {
       animation: waveMove 2s linear infinite;
     }
@@ -159,7 +159,7 @@
       filter: blur(0px);
     }
 
-    /* --- SABIT MÜZİK ÇALAR --- */
+    /* --- SABIT MÃZÄ°K ÃALAR --- */
     .music-player {
       position: fixed;
       bottom: 20px;
@@ -439,34 +439,34 @@
 
 <div id="custom-cursor"></div>
 
-<!-- YENİ LIQUID / SIVI SALLANMA YÜKLEME EKRANI -->
+<!-- YENÄ° LIQUID / SIVI SALLANMA YÃKLEME EKRANI -->
 <div id="troll-enter-screen">
   <div class="liquid-loader-wrapper">
     
     <div class="qh-svg-container">
       <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <!-- QH Köşeli Metin Maskesi -->
+          <!-- QH KÃ¶Åeli Metin Maskesi -->
           <mask id="qh-text-mask">
             <rect width="100%" height="100%" fill="black" />
             <text x="50%" y="75%" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="82" font-weight="900" fill="white" letter-spacing="4">QH</text>
           </mask>
 
-          <!-- Sıvı Rengi (Sarı Gradient) -->
+          <!-- SÄ±vÄ± Rengi (SarÄ± Gradient) -->
           <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#ffe600" />
             <stop offset="100%" stop-color="#ff9900" />
           </linearGradient>
         </defs>
 
-        <!-- Dış Çerçeve (Boş QH) -->
+        <!-- DÄ±Å ÃerÃ§eve (BoÅ QH) -->
         <text x="50%" y="75%" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="82" font-weight="900" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" letter-spacing="4">QH</text>
 
-        <!-- Sıvı Katmanı (Maskelenmiş) -->
+        <!-- SÄ±vÄ± KatmanÄ± (MaskelenmiÅ) -->
         <g mask="url(#qh-text-mask)">
-          <!-- Yükselen Sıvı Grubu -->
+          <!-- YÃ¼kselen SÄ±vÄ± Grubu -->
           <g id="liquid-level" transform="translate(0, 110)">
-            <!-- Sıvı Dalga Yüzeyi -->
+            <!-- SÄ±vÄ± Dalga YÃ¼zeyi -->
             <path class="liquid-wave" fill="url(#liquidGrad)" d="M 0,0 C 40,-8 80,8 120,0 C 160,-8 200,8 240,0 C 280,-8 320,8 360,0 V 150 H 0 Z" />
           </g>
         </g>
@@ -497,7 +497,7 @@
           <button id="langBtn">Language: EN</button>
           <ul id="langMenu">
             <li data-lang="en">English</li>
-            <li data-lang="tr">Türkçe</li>
+            <li data-lang="tr">TÃ¼rkÃ§e</li>
           </ul>
         </div>
       </div>
@@ -523,19 +523,19 @@
       <div class="grid">
         <div class="card">
           <div class="card-content">
-            <b>💻 LuStudio & Bot Development</b>
-            <p>I make Discord mods/architecture/bots (I'm not overweight - really!). Oh, and I also have LuStudio. It's a center for creating visual websites, Discord bots, and writing code with AI (use it 🔫 threat!).</p>
+            <b>ð» LuStudio & Bot Development</b>
+            <p>I make Discord mods/architecture/bots (I'm not overweight - really!). Oh, and I also have LuStudio. It's a center for creating visual websites, Discord bots, and writing code with AI (use it ð« threat!).</p>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>📜 Roblox Scripting</b>
+            <b>ð Roblox Scripting</b>
             <p>Engineered high-performance MM2 execution scripts and universal optimization hubs. Specialized in runtime code manipulation and bypass mechanisms. Those who want to use it can check out QeatHub on GitHub.</p>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>🏃 Evader</b>
+            <b>ð Evader</b>
             <p>I was a Pro Evade player until a year ago. But it got a bit boring, so I'm starting again. I'm level 140+. I can do E-Hop on mobile!!</p>
           </div>
         </div>
@@ -559,14 +559,14 @@
             <p>Current architecture, Cloud IDE engines, and production builds under continuous development.</p>
           </div>
           <div class="links-group">
-            <a href="https://lustudio.onrender.com" class="btn-link">LuStudio 🚀</a>
-            <a href="https://qeats-tec.github.io/Qsu-Web/" class="btn-link">Qsu! 🔥</a>
+            <a href="https://lustudio.onrender.com" class="btn-link">LuStudio ð</a>
+            <a href="https://qeats-tec.github.io/Qsu-Web/" class="btn-link">Qsu! ð¥</a>
             <a href="https://qeats-tec.github.io/system-qeat.exe/" class="btn-link">System Execution</a>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>Archive Vault 🗑️</b>
+            <b>Archive Vault ðï¸</b>
             <p>Legacy nodes, logical iterations, and early experimental builds from my initial development pipeline.</p>
           </div>
           <div class="links-group">
@@ -582,28 +582,28 @@
   <main id="content-tr" style="display:none">
     <div class="hero">
       <h1>Selam, Ben Qeat</h1>
-      <p>Her türlü şeyi yaptım herhalde. 2D oyunlar, LuStudio, Discord Bot'lar, Roblox script ve daha fazlası... Eh işte Qeat. Qeat'in açılımını merak edenler için Q + Eat. Bu kadardı, iyi günler!</p>
+      <p>Her tÃ¼rlÃ¼ Åeyi yaptÄ±m herhalde. 2D oyunlar, LuStudio, Discord Bot'lar, Roblox script ve daha fazlasÄ±... Eh iÅte Qeat. Qeat'in aÃ§Ä±lÄ±mÄ±nÄ± merak edenler iÃ§in Q + Eat. Bu kadardÄ±, iyi gÃ¼nler!</p>
     </div>
 
     <section>
-      <h2>Ana İstatistikler</h2>
+      <h2>Ana Ä°statistikler</h2>
       <div class="grid">
         <div class="card">
           <div class="card-content">
-            <b>💻 LuStudio ve Bot Yapımı</b>
-            <p>Discord mod/mimarlık/bot yapıyom (kilolu değilim -gerçektende-) Ha birde yine LuStudio var. Görsel Web sitesi oluşturma / Discord Bot / AI ile kod yazma merkezi (kullanın🔫tehdit)</p>
+            <b>ð» LuStudio ve Bot YapÄ±mÄ±</b>
+            <p>Discord mod/mimarlÄ±k/bot yapÄ±yom (kilolu deÄilim -gerÃ§ektende-) Ha birde yine LuStudio var. GÃ¶rsel Web sitesi oluÅturma / Discord Bot / AI ile kod yazma merkezi (kullanÄ±nð«tehdit)</p>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>📜 Roblox Script (MM2 Hilesi)</b>
-            <p>Roblox platformu ve özellikle MM2 için özel geliştirilmiş üst düzey script yazılımları, runtime kod manipülasyonu ve performans optimizasyon sistemleri. Kullanmak isteyenler GitHub üzerinden QeatHub'a bakabilir.</p>
+            <b>ð Roblox Script (MM2 Hilesi)</b>
+            <p>Roblox platformu ve Ã¶zellikle MM2 iÃ§in Ã¶zel geliÅtirilmiÅ Ã¼st dÃ¼zey script yazÄ±lÄ±mlarÄ±, runtime kod manipÃ¼lasyonu ve performans optimizasyon sistemleri. Kullanmak isteyenler GitHub Ã¼zerinden QeatHub'a bakabilir.</p>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>🏃 Evade (130+ Lvl)</b>
-            <p>1 yıl önceye kadar Pro Evade oyuncusuydum. Ama sıktı biraz yeniden başlıyom. +140 Level'im. Artık mobile E-hop yapabiliyom!!</p>
+            <b>ð Evade (130+ Lvl)</b>
+            <p>1 yÄ±l Ã¶nceye kadar Pro Evade oyuncusuydum. Ama sÄ±ktÄ± biraz yeniden baÅlÄ±yom. +140 Level'im. ArtÄ±k mobile E-hop yapabiliyom!!</p>
           </div>
         </div>
       </div>
@@ -614,31 +614,31 @@
       <div class="grid">
         <div class="card">
           <div class="card-content">
-            <b>Discord Altyapıları</b>
-            <p>Modüler altyapılar geliştiriyor ve topluluk sistemleri için uçtan uca arka plan desteği sunuyorum.</p>
+            <b>Discord AltyapÄ±larÄ±</b>
+            <p>ModÃ¼ler altyapÄ±lar geliÅtiriyor ve topluluk sistemleri iÃ§in uÃ§tan uca arka plan desteÄi sunuyorum.</p>
             <span style="color:var(--accent); display: block; margin: 10px 0; font-weight: bold; font-size: 0.9rem;">Discord: qeat.bee</span>
           </div>
-          <a href="https://discord.com/users/1386428726744711308" class="btn-link" style="align-self: flex-start;">Profille Bağlantı Kur</a>
+          <a href="https://discord.com/users/1386428726744711308" class="btn-link" style="align-self: flex-start;">Profille BaÄlantÄ± Kur</a>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>Aktif Geliştirmeler</b>
-            <p>Üzerinde çalışmaya devam ettiğim, güncel mantık, Cloud IDE ve motor süreçlerini barındıran projelerim.</p>
+            <b>Aktif GeliÅtirmeler</b>
+            <p>Ãzerinde Ã§alÄ±Åmaya devam ettiÄim, gÃ¼ncel mantÄ±k, Cloud IDE ve motor sÃ¼reÃ§lerini barÄ±ndÄ±ran projelerim.</p>
           </div>
           <div class="links-group">
-            <a href="https://lustudio.onrender.com" class="btn-link">LuStudio 🚀</a>
-            <a href="https://qeats-tec.github.io/Qsu-Web/" class="btn-link">Qsu! 🔥</a>
+            <a href="https://lustudio.onrender.com" class="btn-link">LuStudio ð</a>
+            <a href="https://qeats-tec.github.io/Qsu-Web/" class="btn-link">Qsu! ð¥</a>
             <a href="https://qeats-tec.github.io/system-qeat.exe/" class="btn-link">system.exe</a>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <b>Arşiv Deposu 🗑️</b>
-            <p>Yazılım serüvenimin ilk dönemlerinden kalan eski mantık denemeleri ve deneversal kod blokları.</p>
+            <b>ArÅiv Deposu ðï¸</b>
+            <p>YazÄ±lÄ±m serÃ¼venimin ilk dÃ¶nemlerinden kalan eski mantÄ±k denemeleri ve deneversal kod bloklarÄ±.</p>
           </div>
           <div class="links-group">
             <a href="https://qeats-tec.github.io/Wilson/" class="btn-link">Save Wilson!</a>
-            <a href="https://qeats-tec.github.io/Test/" class="btn-link">Güven Matrisi</a>
+            <a href="https://qeats-tec.github.io/Test/" class="btn-link">GÃ¼ven Matrisi</a>
           </div>
         </div>
       </div>
@@ -647,7 +647,7 @@
 
   <footer>
     <span class="copyright-text" onclick="openTrollCopyright()">
-      © 2026 Qeat. Tüm bu yapılar Baba Qeat'in elinden çıkmıştır. [Telif Hakları & Kurallar]
+      Â© 2026 Qeat. TÃ¼m bu yapÄ±lar Baba Qeat'in elinden Ã§Ä±kmÄ±ÅtÄ±r. [Telif HaklarÄ± & Kurallar]
     </span>
   </footer>
 
@@ -656,19 +656,19 @@
 <!-- TROLL TELIF MODAL -->
 <div id="trollModal">
   <div class="modal-box">
-    <h3>⚠️ BABA QEAT TELİF PROTOKOLÜ</h3>
+    <h3>â ï¸ BABA QEAT TELÄ°F PROTOKOLÃ</h3>
     <ul>
-      <li>1. Bu sitedeki kodları veya tasarımları çalmaya kalkarsan klavyen kendiliğinden "baba qeat büyüktür" yazmaya başlar.</li>
-      <li>2. LuStudio ve geliştirmeler izinsiz kopyalanamaz, kopyalanırsa faturası doğrudan adrese tebliğ edilir.</li>
-      <li>3. Evade'de 130 seviye altı olanların bu kurallara itiraz etme hakkı yoktur.</li>
-      <li>4. Tüm hakları Baba Qeat'in yetkisi altındadır.</li>
+      <li>1. Bu sitedeki kodlarÄ± veya tasarÄ±mlarÄ± Ã§almaya kalkarsan klavyen kendiliÄinden "baba qeat bÃ¼yÃ¼ktÃ¼r" yazmaya baÅlar.</li>
+      <li>2. LuStudio ve geliÅtirmeler izinsiz kopyalanamaz, kopyalanÄ±rsa faturasÄ± doÄrudan adrese tebliÄ edilir.</li>
+      <li>3. Evade'de 130 seviye altÄ± olanlarÄ±n bu kurallara itiraz etme hakkÄ± yoktur.</li>
+      <li>4. TÃ¼m haklarÄ± Baba Qeat'in yetkisi altÄ±ndadÄ±r.</li>
     </ul>
-    <button class="close-modal-btn" onclick="closeTrollCopyright()">Anlaşıldı Baba</button>
+    <button class="close-modal-btn" onclick="closeTrollCopyright()">AnlaÅÄ±ldÄ± Baba</button>
   </div>
 </div>
 
 <script>
-  // İMLEÇ SCRIPTI
+  // Ä°MLEÃ SCRIPTI
   const cursor = document.getElementById('custom-cursor');
   document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
@@ -684,13 +684,13 @@
     let startY = 110; 
     let targetY = 10; 
     let startTime = null;
-    const duration = 2200; // Dolma süresi (2.2 saniye)
+    const duration = 2200; // Dolma sÃ¼resi (2.2 saniye)
 
     function fillLiquid(timestamp) {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       
-      // Easing (yavaşlayarak dolma)
+      // Easing (yavaÅlayarak dolma)
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const currentY = startY - ((startY - targetY) * easeProgress);
       
@@ -699,7 +699,7 @@
       if (progress < 1) {
         requestAnimationFrame(fillLiquid);
       } else {
-        // Dolma bitince yazı gözüksün
+        // Dolma bitince yazÄ± gÃ¶zÃ¼ksÃ¼n
         prompt.classList.add('ready');
       }
     }
@@ -756,7 +756,7 @@
     } catch (error) {
       console.error(error);
       const isTr = document.documentElement.lang === "tr";
-      wordsList.innerHTML = `<span style="color: #ff4a4a; font-size:0.9rem;">${isTr ? 'Veri çekme başarısız oldu.' : 'Data sync blocked.'}</span>`;
+      wordsList.innerHTML = `<span style="color: #ff4a4a; font-size:0.9rem;">${isTr ? 'Veri Ã§ekme baÅarÄ±sÄ±z oldu.' : 'Data sync blocked.'}</span>`;
     }
   });
 
