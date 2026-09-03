@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qeat | Portfolio</title>
+  <!-- Orbitron Fontu Eklendi (Köşeli, Yüksek Teknoloji Stili) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght=300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0a0c10;              
+      --card-bg: rgba(10, 12, 16, 0.6); 
+      --accent: #ffcc00;        
+      --accent-glow: rgba(255, 204, 0, 0.25);
+      --secondary: #e4e4e7;     
+      --text: #ffffff;          
+      --muted: #a1a1aa;         
+      --border: rgba(255, 255, 255, 0.08); 
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+      cursor: none !important; 
+    }
+
+    body, header, .card, .btn-link, #langBtn, .action-btn, #langMenu li {
+      transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #custom-cursor {
+      position: fixed;
+      width: 48px; 
+      height: 48px;
+      background-image: url('pixilart-drawing (21).png'); 
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-10%, -10%); 
+      will-change: left, top;
+    }
+
+    .cursor-click { transform: scale(0.8) rotate(-10deg) !important; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      
+      background-image: 
+        linear-gradient(rgba(10, 12, 16, 0.85), rgba(10, 12, 16, 0.85)), 
+        url('profil.png'); 
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      
+      line-height: 1.5;
+    }
+
+    /* --- YENİ LIQUID LOADING INTRO --- */
+    #troll-enter-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(5, 6, 8, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9998;
+    }
+
+    .liquid-loader-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: floatShake 3s ease-in-out infinite;
+    }
+
+    /* Hafif Sallanma / Süzülme Efekti */
+    @keyframes floatShake {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(-1deg); }
+      75% { transform: translateY(6px) rotate(1deg); }
+    }
+
+    /* SVG Maske ve Sıvı Katmanları */
+    .qh-svg-container {
+      width: 260px;
+      height: 180px;
+      position: relative;
+      filter: drop-shadow(0 0 25px var(--accent-glow));
+    }
+
+    /* Sıvı Yükselme Animasyonu */
+    .liquid-wave {
+      animation: waveMove 2s linear infinite;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-160px); }
+    }
+
+    #click-prompt {
+      margin-top: 35px;
+      color: var(--accent);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 4px;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    #click-prompt.ready {
+      opacity: 1;
+      pointer-events: auto;
+      animation: blinkText 1.2s infinite;
+    }
+
+    @keyframes blinkText {
+      50% { opacity: 0.3; }
+    }
+
+    .screen-flash-bang {
+      animation: flashEffect 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes flashEffect {
+      0% { background-color: rgba(5, 6, 8, 0.85); }
+      40% { background-color: #ffffff; } 
+      100% { background-color: #0a0c10; opacity: 0; visibility: hidden; }
+    }
+
+    /* --- REAL PORTFOLIO WRAPPER --- */
+    #app-wrapper {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(10px);
+      transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+    }
+
+    #app-wrapper.loaded {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+
+    /* --- SABIT MÜZİK ÇALAR --- */
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      background: rgba(10, 12, 16, 0.85);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    #musicBtn {
+      background: var(--accent);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 11px;
+      color: #000000;
+    }
+
+    /* --- NAVIGASYON --- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 12, 16, 0.7);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--text);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .action-btn {
+      background: rgba(255, 204, 0, 0.05);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .action-btn:hover {
+      background: var(--accent);
+      color: #000000;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    #langBtn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    #langBtn:hover { background: rgba(255,255,255,0.08); }
+
+    #langMenu {
+      position: absolute;
+      right: 0; top: 45px;
+      background: #111318;
+      border: 1px solid var(--border);
+      list-style: none;
+      padding: 6px;
+      border-radius: 12px;
+      display: none;
+      min-width: 130px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    #langMenu.show { display: block; animation: slideUp 0.2s ease forwards; }
+    #langMenu li { padding: 10px 14px; border-radius: 8px; font-size: 0.9rem; color: var(--muted); }
+    #langMenu li:hover { background: rgba(255,255,255,0.05); color: var(--accent); }
+
+    /* --- HERO & SECTIONS --- */
+    .hero {
+      text-align: center;
+      padding: 120px 20px 60px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 800;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 1.2rem; max-width: 600px; margin: auto; }
+
+    section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h2::after { content: ""; height: 1px; flex: 1; background: var(--border); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    /* --- KARTLAR --- */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
+    }
+    .card-content { flex-grow: 1; }
+    .card b { color: var(--accent); display: block; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; }
+    .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
+
+    .links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    .btn-link:hover { background: var(--text); color: #000000; border-color: var(--text); }
+
+    /* --- DINAMIK KELIME LISTESI ALANI --- */
+    .words-container {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px dashed var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      margin-top: 20px;
+      display: none; 
+      animation: slideUp 0.3s ease forwards;
+    }
+    .words-container.active { display: block; }
+    .words-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .word-badge {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .word-badge:hover {
+      border-color: var(--accent);
+      color: #000000;
+      background: var(--accent);
+    }
+
+    /* --- FOOTER & TROLL COPYRIGHT --- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 80px;
+      background: rgba(10, 12, 16, 0.5);
+    }
+    .copyright-text {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+    .copyright-text:hover {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* --- TROLL MODAL --- */
+    #trollModal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 10001;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-box {
+      background: #111318;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 30px var(--accent-glow);
+      text-align: left;
+    }
+    .modal-box h3 { color: var(--accent); margin-bottom: 15px; font-weight: 800; font-size: 1.3rem; }
+    .modal-box ul { list-style: none; margin-bottom: 20px; }
+    .modal-box li { color: var(--secondary); margin-bottom: 10px; font-size: 0.95rem; line-height: 1.5; }
+    .close-modal-btn {
+      background: var(--accent);
+      border: none;
+      color: #000;
+      font-weight: 800;
+      padding: 10px 20px;
+      border-radius: 10px;
+      float: right;
+    }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 600px) {
+      .hero { padding: 80px 20px 40px; }
+      .grid { grid-template-columns: 1fr; }
+      .nav { padding: 1rem; }
+      .qh-svg-container { width: 200px; height: 140px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="custom-cursor"></div>
+
+<!-- YENİ LIQUID / SIVI SALLANMA YÜKLEME EKRANI -->
+<div id="troll-enter-screen">
+  <div class="liquid-loader-wrapper">
+    
+    <div class="qh-svg-container">
+      <svg width="100%" height="100%" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- QH Köşeli Metin Maskesi -->
+          <mask id="qh-text-mask">
+            <rect width="100%" height="100%" fill="black" />
+            <text x="50%" y="75%" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="82" font-weight="900" fill="white" letter-spacing="4">QH</text>
+          </mask>
+
+          <!-- Sıvı Rengi (Sarı Gradient) -->
+          <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffe600" />
+            <stop offset="100%" stop-color="#ff9900" />
+          </linearGradient>
+        </defs>
+
+        <!-- Dış Çerçeve (Boş QH) -->
+        <text x="50%" y="75%" text-anchor="middle" font-family="'Orbitron', sans-serif" font-size="82" font-weight="900" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" letter-spacing="4">QH</text>
+
+        <!-- Sıvı Katmanı (Maskelenmiş) -->
+        <g mask="url(#qh-text-mask)">
+          <!-- Yükselen Sıvı Grubu -->
+          <g id="liquid-level" transform="translate(0, 110)">
+            <!-- Sıvı Dalga Yüzeyi -->
+            <path class="liquid-wave" fill="url(#liquidGrad)" d="M 0,0 C 40,-8 80,8 120,0 C 160,-8 200,8 240,0 C 280,-8 320,8 360,0 V 150 H 0 Z" />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div id="click-prompt" onclick="enterPortfolio()">[ CLICK TO ENTER ]</div>
+  </div>
+</div>
+
+<div id="app-wrapper">
+
+  <div class="music-player">
+    <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px;">QEAT RADIO</span>
+    <button id="musicBtn">PLAY</button>
+    <audio id="bgAudio" loop preload="auto">
+      <source src="sarki.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <header>
+    <div class="nav">
+      <div class="logo">QEAT</div>
+      <div class="nav-controls">
+        <button id="cardsBtn" class="action-btn">Cards</button>
+         
+        <div class="lang-wrapper" style="position: relative;">
+          <button id="langBtn">Language: EN</button>
+          <ul id="langMenu">
+            <li data-lang="en">English</li>
+            <li data-lang="tr">Türkçe</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section style="margin: 30px auto 0;">
+    <div id="wordsPanel" class="words-container">
+      <h3 id="panelTitle" style="color: var(--accent); font-weight: 800; font-size: 1.2rem;">Cards //</h3>
+      <div id="wordsList" class="words-grid"></div>
+    </div>
+  </section>
+
+  <!-- ENGLISH CONTENT -->
+  <main id="content-en">
+    <div class="hero">
+      <h1>Hi, I'm Qeat</h1>
+      <p>I think I've done all sorts of things. 2D games, LuStudio, Discord Bots, Roblox scripts, and more... Well, Qeat. For those wondering what Qeat stands for, it's Q + Eat. That's all, have a nice day!</p>
+    </div>
+
+    <section>
+      <h2>Main Statistics</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-content">
+            <b>💻 LuStudio & Bot Development</b>
+            <p>I make Discord mods/architecture/bots (I'm not overweight - really!). Oh, and I also have LuStudio. It's a center for creating visual websites, Discord bots, and writing code with AI (use it 🔫 threat!).</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>📜 Roblox Scripting</b>
+            <p>Engineered high-performance MM2 execution scripts and universal optimization hubs. Specialized in runtime code manipulation and bypass mechanisms. Those who want to use it can check out QeatHub on GitHub.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>🏃 Evader</b>
+            <p>I was a Pro Evade player until a year ago. But it got a bit boring, so I'm starting again. I'm level 140+. I can do E-Hop on mobile!!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects & Services</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-content">
+            <b>Discord Infrastructure</b>
+            <p>Developing heavy-duty modular frameworks and managing backend communications for core operations.</p>
+            <span style="color:var(--accent); display: block; margin: 10px 0; font-weight: bold; font-size: 0.9rem;">Discord: qeat.bee</span>
+          </div>
+          <a href="https://discord.com/users/1386428726744711308" class="btn-link" style="align-self: flex-start;">Connect Profile</a>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>Active Repositories</b>
+            <p>Current architecture, Cloud IDE engines, and production builds under continuous development.</p>
+          </div>
+          <div class="links-group">
+            <a href="https://lustudio.onrender.com" class="btn-link">LuStudio 🚀</a>
+            <a href="https://qeats-tec.github.io/Qsu-Web/" class="btn-link">Qsu! 🔥</a>
+            <a href="https://qeats-tec.github.io/system-qeat.exe/" class="btn-link">System Execution</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>Archive Vault 🗑️</b>
+            <p>Legacy nodes, logical iterations, and early experimental builds from my initial development pipeline.</p>
+          </div>
+          <div class="links-group">
+            <a href="https://qeats-tec.github.io/Wilson/" class="btn-link">Save Wilson!</a>
+            <a href="https://qeats-tec.github.io/Test/" class="btn-link">Trust Matrix</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TURKISH CONTENT -->
+  <main id="content-tr" style="display:none">
+    <div class="hero">
+      <h1>Selam, Ben Qeat</h1>
+      <p>Her türlü şeyi yaptım herhalde. 2D oyunlar, LuStudio, Discord Bot'lar, Roblox script ve daha fazlası... Eh işte Qeat. Qeat'in açılımını merak edenler için Q + Eat. Bu kadardı, iyi günler!</p>
+    </div>
+
+    <section>
+      <h2>Ana İstatistikler</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-content">
+            <b>💻 LuStudio ve Bot Yapımı</b>
+            <p>Discord mod/mimarlık/bot yapıyom (kilolu değilim -gerçektende-) Ha birde yine LuStudio var. Görsel Web sitesi oluşturma / Discord Bot / AI ile kod yazma merkezi (kullanın🔫tehdit)</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>📜 Roblox Script (MM2 Hilesi)</b>
+            <p>Roblox platformu ve özellikle MM2 için özel geliştirilmiş üst düzey script yazılımları, runtime kod manipülasyonu ve performans optimizasyon sistemleri. Kullanmak isteyenler GitHub üzerinden QeatHub'a bakabilir.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>🏃 Evade (130+ Lvl)</b>
+            <p>1 yıl önceye kadar Pro Evade oyuncusuydum. Ama sıktı biraz yeniden başlıyom. +140 Level'im. Artık mobile E-hop yapabiliyom!!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projeler & Hizmetler</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-content">
+            <b>Discord Altyapıları</b>
+            <p>Modüler altyapılar geliştiriyor ve topluluk sistemleri için uçtan uca arka plan desteği sunuyorum.</p>
+            <span style="color:var(--accent); display: block; margin: 10px 0; font-weight: bold; font-size: 0.9rem;">Discord: qeat.bee</span>
+          </div>
+          <a href="https://discord.com/users/1386428726744711308" class="btn-link" style="align-self: flex-start;">Profille Bağlantı Kur</a>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>Aktif Geliştirmeler</b>
+            <p>Üzerinde çalışmaya devam ettiğim, güncel mantık, Cloud IDE ve motor süreçlerini barındıran projelerim.</p>
+          </div>
+          <div class="links-group">
+            <a href="https://lustudio.onrender.com" class="btn-link">LuStudio 🚀</a>
+            <a href="https://qeats-tec.github.io/Qsu-Web/" class="btn-link">Qsu! 🔥</a>
+            <a href="https://qeats-tec.github.io/system-qeat.exe/" class="btn-link">system.exe</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <b>Arşiv Deposu 🗑️</b>
+            <p>Yazılım serüvenimin ilk dönemlerinden kalan eski mantık denemeleri ve deneversal kod blokları.</p>
+          </div>
+          <div class="links-group">
+            <a href="https://qeats-tec.github.io/Wilson/" class="btn-link">Save Wilson!</a>
+            <a href="https://qeats-tec.github.io/Test/" class="btn-link">Güven Matrisi</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="copyright-text" onclick="openTrollCopyright()">
+      © 2026 Qeat. Tüm bu yapılar Baba Qeat'in elinden çıkmıştır. [Telif Hakları & Kurallar]
+    </span>
+  </footer>
+
+</div>
+
+<!-- TROLL TELIF MODAL -->
+<div id="trollModal">
+  <div class="modal-box">
+    <h3>⚠️ BABA QEAT TELİF PROTOKOLÜ</h3>
+    <ul>
+      <li>1. Bu sitedeki kodları veya tasarımları çalmaya kalkarsan klavyen kendiliğinden "baba qeat büyüktür" yazmaya başlar.</li>
+      <li>2. LuStudio ve geliştirmeler izinsiz kopyalanamaz, kopyalanırsa faturası doğrudan adrese tebliğ edilir.</li>
+      <li>3. Evade'de 130 seviye altı olanların bu kurallara itiraz etme hakkı yoktur.</li>
+      <li>4. Tüm hakları Baba Qeat'in yetkisi altındadır.</li>
+    </ul>
+    <button class="close-modal-btn" onclick="closeTrollCopyright()">Anlaşıldı Baba</button>
+  </div>
+</div>
+
+<script>
+  // İMLEÇ SCRIPTI
+  const cursor = document.getElementById('custom-cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mousedown', () => cursor.classList.add('cursor-click'));
+  document.addEventListener('mouseup', () => cursor.classList.remove('cursor-click'));
+
+  // --- SIVI DOLMA ANIMASYON KONTROLU ---
+  window.addEventListener('DOMContentLoaded', () => {
+    const liquidLevel = document.getElementById('liquid-level');
+    const prompt = document.getElementById('click-prompt');
+    let startY = 110; 
+    let targetY = 10; 
+    let startTime = null;
+    const duration = 2200; // Dolma süresi (2.2 saniye)
+
+    function fillLiquid(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      // Easing (yavaşlayarak dolma)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentY = startY - ((startY - targetY) * easeProgress);
+      
+      liquidLevel.setAttribute('transform', `translate(0, ${currentY})`);
+
+      if (progress < 1) {
+        requestAnimationFrame(fillLiquid);
+      } else {
+        // Dolma bitince yazı gözüksün
+        prompt.classList.add('ready');
+      }
+    }
+
+    requestAnimationFrame(fillLiquid);
+  });
+
+  function enterPortfolio() {
+    const screen = document.getElementById('troll-enter-screen');
+    const wrapper = document.getElementById('app-wrapper');
+    const audio = document.getElementById('bgAudio');
+    const mBtn = document.getElementById('musicBtn');
+
+    screen.classList.add('screen-flash-bang');
+
+    setTimeout(() => {
+      wrapper.classList.add('loaded');
+      audio.play()
+        .then(() => { mBtn.textContent = "PAUSE"; })
+        .catch(err => console.log("Auto-play blocked:", err));
+    }, 300);
+  }
+
+  // --- GITHUB FETCH ENGINE ---
+  const cardsBtn = document.getElementById('cardsBtn');
+  const wordsPanel = document.getElementById('wordsPanel');
+  const wordsList = document.getElementById('wordsList');
+  const jsonUrl = 'https://raw.githubusercontent.com/qeats-tec/qeat/refs/heads/main/kelime.json';
+
+  cardsBtn.addEventListener('click', async () => {
+    if (wordsPanel.classList.contains('active')) {
+      wordsPanel.classList.remove('active');
+      return;
+    }
+
+    try {
+      const isTr = document.documentElement.lang === "tr";
+      wordsList.innerHTML = `<span style="color: var(--muted); font-size:0.9rem;">${isTr ? 'Veriler senkronize ediliyor...' : 'Fetching raw data node...'}</span>`;
+      wordsPanel.classList.add('active');
+
+      const response = await fetch(jsonUrl);
+      if (!response.ok) throw new Error('Fetch failed');
+        
+      const kelimeler = await response.json();
+        
+      wordsList.innerHTML = '';
+      kelimeler.forEach(kelime => {
+        const badge = document.createElement('div');
+        badge.className = 'word-badge';
+        badge.textContent = kelime;
+        wordsList.appendChild(badge);
+      });
+
+    } catch (error) {
+      console.error(error);
+      const isTr = document.documentElement.lang === "tr";
+      wordsList.innerHTML = `<span style="color: #ff4a4a; font-size:0.9rem;">${isTr ? 'Veri çekme başarısız oldu.' : 'Data sync blocked.'}</span>`;
+    }
+  });
+
+  // --- MUSIC CONTROLLER ---
+  const audio = document.getElementById('bgAudio');
+  const mBtn = document.getElementById('musicBtn');
+
+  mBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    if (audio.paused) {
+      audio.play()
+        .then(() => { mBtn.textContent = "PAUSE"; })
+        .catch(error => {
+          console.error("Audio error:", error);
+        });
+    } else {
+      audio.pause();
+      mBtn.textContent = "PLAY";
+    }
+  });
+
+  // --- LANGUAGE SWITCHER ---
+  const en = document.getElementById("content-en");
+  const tr = document.getElementById("content-tr");
+  const btn = document.getElementById("langBtn");
+  const menu = document.getElementById("langMenu");
+  const panelTitle = document.getElementById("panelTitle");
+
+  btn.addEventListener("click", (e)=>{
+    e.stopPropagation();
+    menu.classList.toggle("show");
+  });
+
+  document.querySelectorAll("#langMenu li").forEach(li=>{
+    li.addEventListener("click", ()=>{
+      const isTr = li.dataset.lang === "tr";
+      en.style.display = isTr ? "none" : "block";
+      tr.style.display = isTr ? "block" : "none";
+      btn.textContent = isTr ? "Dil: TR" : "Language: EN";
+      cardsBtn.textContent = isTr ? "Kelimeler" : "Cards";
+      panelTitle.textContent = isTr ? "Kelimeler //" : "Cards //";
+      document.documentElement.lang = isTr ? "tr" : "en";
+      menu.classList.remove("show");
+    });
+  });
+
+  document.addEventListener("click", () => menu.classList.remove("show"));
+
+  // --- TROLL COPYRIGHT MODAL LOGIC ---
+  function openTrollCopyright() {
+    document.getElementById('trollModal').style.display = 'flex';
+  }
+  function closeTrollCopyright() {
+    document.getElementById('trollModal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
