@@ -1,0 +1,13 @@
+{
+  "name": "deploy-test-app",
+  "version": "1.0.0",
+  "description": "Basic app for testing deploy build and start commands",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
